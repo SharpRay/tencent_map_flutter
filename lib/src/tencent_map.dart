@@ -188,6 +188,41 @@ class TencentMapState extends State<TencentMap> {
     }
   }
 
+  void updateMapConfig() {
+    MapConfig config = MapConfig();
+    config.mapType = widget.mapType;
+    config.mapStyle = widget.mapStyle;
+    config.logoScale = widget.logoScale;
+    config.logoPosition = widget.logoPosition ??
+        UIControlPosition(
+          anchor: UIControlAnchor.bottomRight,
+          offset: defaultUIControlOffset,
+        );
+    config.scalePosition = widget.scalePosition ??
+        UIControlPosition(
+          anchor: UIControlAnchor.bottomLeft,
+          offset: defaultUIControlOffset,
+        );
+    if (widget.compassOffset != null) {
+      config.compassOffset = widget.compassOffset;
+    }
+    config.compassEnabled = widget.compassEnabled;
+    config.scaleEnabled = widget.scaleEnabled;
+    config.scaleFadeEnabled = widget.scaleFadeEnabled;
+    config.skewGesturesEnabled = widget.skewGesturesEnabled;
+    config.scrollGesturesEnabled = widget.scrollGesturesEnabled;
+    config.zoomGesturesEnabled = widget.zoomGesturesEnabled;
+    config.rotateGesturesEnabled = widget.rotateGesturesEnabled;
+    config.trafficEnabled = widget.trafficEnabled;
+    config.indoorViewEnabled = widget.indoorViewEnabled;
+    config.indoorPickerEnabled = widget.indoorPickerEnabled;
+    config.buildingsEnabled = widget.buildingsEnabled;
+    config.buildings3dEnabled = widget.buildings3dEnabled;
+    config.myLocationEnabled = widget.myLocationEnabled;
+    config.userLocationType = widget.userLocationType;
+    TencentMapMethodChannel.instance.updateMapConfig(config, mapId: mapId);
+  }
+
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
